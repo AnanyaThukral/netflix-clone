@@ -5,3 +5,10 @@
 .navbar-colorchange{
     background-color: rgb(20, 20, 20);
 }
+
+.nav-icon{
+  color: white;
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+}

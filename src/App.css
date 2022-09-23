@@ -1,0 +1,7 @@
+.navbar{
+  background-image: linear-gradient(180deg,rgba(0,0,0,.7) 10%,transparent) ;
+}
+
+.navbar-colorchange{
+    background-color: rgb(20, 20, 20);
+}

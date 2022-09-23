@@ -1,17 +1,17 @@
 import {React, useEffect, useState} from 'react'
 import styled from 'styled-components'
+import '../App.css'
 
 const NavBar = () => {
 
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
     
     const handleShow = () => {
-        if(window.scrollY > 9){
+        if(window.scrollY > 7){
             setShow(true)
-            console.log(show)
         } else{
             setShow(false)
-            console.log(show)
+ 
         }
     }
 
@@ -21,7 +21,7 @@ const NavBar = () => {
     },[])
 
   return (
-    <Nav>
+    <Nav className={show ? 'navbar-colorchange' : 'navbar'}>
       <LeftContainer>
         <Logo>
             <img src='https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png' alt='netflix logo'/>
@@ -43,9 +43,6 @@ const Nav = styled.div`
     width: 100vw;
     height: 41px;
     position: fixed;
-    background-color: ${({show}) => show ? 'red' : 'rgb(20, 20, 20)'};
-    /* background-color: rgb(20, 20, 20); */
-    /* background-image: linear-gradient(180deg,rgba(0,0,0,.7) 10%,transparent); */
     display: flex;
     align-items: center;
 `

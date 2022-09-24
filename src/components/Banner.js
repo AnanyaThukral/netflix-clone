@@ -4,6 +4,12 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 const Banner = () => {
+
+    //truncate description text
+    function truncate(string, n){
+        return string.length > n ? string.substr(0, n-1) + '...' : string
+    }
+
   return (
     <Container>
       <BannerContent>
@@ -11,7 +17,7 @@ const Banner = () => {
             Movie Name
         </BannerTitle>
         <BannerDescription>
-            Movie Description
+           {truncate('This is description This is descriptionThis is descriptionThis is descriptionThis is descriptionThis is descriptionThis is descriptionThis is descriptionThis is descriptionThis is descriptionThis is descriptionThis is descriptionThis is description', 150)}
         </BannerDescription>
         <BannerButton>
             <PlayButton>

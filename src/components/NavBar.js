@@ -93,7 +93,6 @@ const Menu = styled.div`
     }
     li{
         font-size:12px;
-        font-family: Netflix Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
         line-height: 1.2;
     }
     a{

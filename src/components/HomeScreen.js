@@ -2,14 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import NavBar from './NavBar'
 import Banner from './Banner'
+import Rows from './Rows'
 
 const HomeScreen = () => {
   return (
     <Container>
-      {/* Navbar */}
       <NavBar/>
       <Banner/>
-      {/* Row Container */}
+      <Rows/>
     </Container>
   )
 }

@@ -57,14 +57,15 @@ export default Banner
 const Container = styled.div`
     position: relative;
     height: 448px;
-    background-position: center;
+    background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
+    object-fit: contain;
     color: white;
     z-index: -1;
 
-    @media (min-width: 768px){
-        height: 100vh;
+    @media (min-width: 1200px){
+        height: 80vh;
     }
 `
 

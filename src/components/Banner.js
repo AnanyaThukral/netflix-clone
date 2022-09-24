@@ -1,9 +1,24 @@
-import React from 'react'
+import {React, useState, useEffect} from 'react'
 import styled from 'styled-components'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import axios from '../axios'
+import requests from '../Requests';
 
 const Banner = () => {
+
+    //store movie data
+    const [movie, setMovie] = useState([]);
+
+    useEffect(()=>{
+        async function fetchData() {
+            const request = await axios.get(requests.fetchNetflixOriginals)
+            setMovie(request.data.results[Math.floor(Math.random() * request.data.results.length-1)
+            ])
+            return request   
+        }
+        fetchData()
+    },[])
 
     //truncate description text
     function truncate(string, n){
@@ -11,13 +26,15 @@ const Banner = () => {
     }
 
   return (
-    <Container>
+    <Container style={{
+        backgroundImage: `url("https://image.tmdb.org/t/p/w500/${movie?.backdrop_path}")`
+    }}>
       <BannerContent>
         <BannerTitle>
-            Movie Name
+            {movie?.name || movie?.title || movie?.original_name}
         </BannerTitle>
         <BannerDescription>
-           {truncate('This is description This is descriptionThis is descriptionThis is descriptionThis is descriptionThis is descriptionThis is descriptionThis is descriptionThis is descriptionThis is descriptionThis is descriptionThis is descriptionThis is description', 150)}
+           {truncate(movie?.overview || 'description being created..', 150)}
         </BannerDescription>
         <BannerButton>
             <PlayButton>
@@ -30,6 +47,7 @@ const Banner = () => {
             </MoreInfoButton>
         </BannerButton>
       </BannerContent>
+      <BannerFadeContainer></BannerFadeContainer>
     </Container>
   )
 }
@@ -39,12 +57,15 @@ export default Banner
 const Container = styled.div`
     position: relative;
     height: 448px;
-    background-image: url('https://images.hindustantimes.com/img/2022/09/13/550x309/brahmastra_1662691373090_1663051350014_1663051350014.jpg');
-    object-fit: contain;
-    background-position: center center;
+    background-position: center;
     background-size: cover;
+    background-repeat: no-repeat;
     color: white;
     z-index: -1;
+
+    @media (min-width: 768px){
+        height: 100vh;
+    }
 `
 
 const BannerContent = styled.div`
@@ -104,4 +125,11 @@ const PlayButton = styled.div`
 const MoreInfoButton = styled(PlayButton)`
     background-color: rgba(109, 109, 110, 0.7);
     color: white;
+`
+
+const BannerFadeContainer = styled.div`
+    position: absolute;
+    height: 100px;
+    background-image: linear-gradient(180deg, transparent, rgba(37, 37, 37, 0.61), #111);
+    bottom: 0;
 `

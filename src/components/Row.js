@@ -21,9 +21,9 @@ const Row = ({title, fetchURL, isLargeRow}) => {
   return (
     <Container>
       <h1>{title}</h1>
-      <Wrapper className='test'>    
+      <Wrapper>    
       {movies.map((movie)=>(   
-            <img src = {`${url}${
+            <img className = {`${isLargeRow && 'row_poster_large'}`} src = {`${url}${
                 isLargeRow ? movie.poster_path : movie?.backdrop_path
             }`}/>
         ))}
@@ -48,11 +48,20 @@ const Container = styled.div`
 const Wrapper = styled.div`
     display: flex;
     gap: 5px;
-    overflow-y: hidden;
-    overflow-x: scroll ;
+
     img{
         max-height: 100px;
         object-fit: contain;
+        width: 100%;
+        transition: transform 450ms;
+        &:hover{
+            transform: scale(1.08);
+            opacity: 1;
+        }       
     }
-     &::-webkit-scrollbar {display:none;}
+ 
+     overflow-x: scroll ;
+     &::-webkit-scrollbar { width: 0 !important}
+     /* &::-webkit-scrollbar {display: none !important}; */
+    
 `

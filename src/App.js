@@ -8,9 +8,7 @@ import NavBar from './components/NavBar';
 
 function App() {
 
-  const user = {
-    name: 'Ananya'
-  };
+  const user = null;
 
   return (
     <div className="App">

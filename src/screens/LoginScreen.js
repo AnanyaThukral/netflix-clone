@@ -1,36 +1,39 @@
 import {React, useState} from 'react'
 import styled from 'styled-components'
-
+import SignUpScreen from './SignUpScreen';
 
 const LoginScreen = () => {
 
     //store email address
-    const [email, setEmail] = useState();
+    const [signIn, setSignIn] = useState(false);
 
   return (
     <Container>
-        <Wrapper>
-            <Logo>
-                <img src='https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png' alt='netflix logo'/>
-            </Logo>
-            <LoginButton>
-                Sign In
-            </LoginButton>
-        </Wrapper>
-        <MainContent>
-            <Title>Unlimited films, TV programmes and more.</Title>
-            <Subtitle>Watch anywhere. Cancel anytime.</Subtitle>
-            <Description>Ready to watch? Enter your email to create or restart your membership.</Description>
-            <LoginInputContainer>
-                <form>
-                    <input type='email' placeholder='Email address'></input>    
-                    <button>Get Started</button>
-                </form>
-            </LoginInputContainer>
-        </MainContent>
         <div className='LoginScreen_gradient'></div>
+        <Wrapper>
+        <Logo>
+            <img src='https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png' alt='netflix logo'/>
+        </Logo>
+        <LoginButton onClick={()=> setSignIn(true)}>
+            Sign In
+        </LoginButton>
+        </Wrapper>
+        {signIn ? (
+                <SignUpScreen/>
+            ) : (
+                <MainContent>
+                <Title>Unlimited films, TV programmes and more.</Title>
+                <Subtitle>Watch anywhere. Cancel anytime.</Subtitle>
+                <Description>Ready to watch? Enter your email to create or restart your membership.</Description>
+                <LoginInputContainer>
+                    <form>
+                        <input type='email' placeholder='Email address'></input>    
+                        <button onClick={()=> setSignIn(true)}>Get Started</button>
+                    </form>
+                </LoginInputContainer>
+                </MainContent>
+            )}
     </Container>
-
   )
 }
 

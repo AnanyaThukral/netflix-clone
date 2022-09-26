@@ -7,7 +7,7 @@ import Rows from './Rows'
 const HomeScreen = () => {
   return (
     <Container>
-      <NavBar/>
+      <NavBar screen = 'home'/>
       <Banner/>
       <Rows/>
     </Container>

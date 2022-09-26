@@ -4,7 +4,7 @@ import '../App.css'
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
-const NavBar = () => {
+const NavBar = ({screen}) => {
 
     const [show, setShow] = useState(false);
 
@@ -27,7 +27,7 @@ const NavBar = () => {
         <Logo>
             <img src='https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png' alt='netflix logo'/>
         </Logo>
-        <Menu>
+        <Menu className={screen==='profile' ? 'menu-remove' : ''}>
          <ul>
             <li><a href='#'>Home</a></li>
             <li><a href='#'>TV Shows</a></li>
@@ -39,8 +39,8 @@ const NavBar = () => {
         </Menu>
       </LeftContainer>
       <RightContainer>
-        <SearchIcon className='nav-icon'/>
-        <NotificationsIcon className='nav-icon'/>
+        <SearchIcon className= {screen === 'profile' ? 'menu-remove' : 'nav-icon'}/>
+        <NotificationsIcon className = {screen === 'profile' ? 'menu-remove' : 'nav-icon'}/>
         <ProfilePicture>
             <img src = 'https://occ-0-344-1007.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABY20DrC9-11ewwAs6nfEgb1vrORxRPP9IGmlW1WtKuaLIz8VxCx5NryzDK3_ez064IsBGdXjVUT59G5IRuFdqZlCJCneepU.png?r=229'></img>
         </ProfilePicture>

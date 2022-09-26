@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import '../App.css'
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { NavLink } from 'react-router-dom';
 
 const NavBar = ({screen}) => {
 
@@ -24,9 +25,11 @@ const NavBar = ({screen}) => {
   return (
     <Nav className={show ? 'navbar-colorchange' : 'navbar'}>
       <LeftContainer>
+        <NavLink to = '/'>
         <Logo>
             <img src='https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png' alt='netflix logo'/>
         </Logo>
+        </NavLink>
         <Menu className={screen==='profile' ? 'menu-remove' : ''}>
          <ul>
             <li><a href='#'>Home</a></li>
@@ -41,9 +44,11 @@ const NavBar = ({screen}) => {
       <RightContainer>
         <SearchIcon className= {screen === 'profile' ? 'menu-remove' : 'nav-icon'}/>
         <NotificationsIcon className = {screen === 'profile' ? 'menu-remove' : 'nav-icon'}/>
+        <NavLink to= '/profile'>
         <ProfilePicture>
             <img src = 'https://occ-0-344-1007.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABY20DrC9-11ewwAs6nfEgb1vrORxRPP9IGmlW1WtKuaLIz8VxCx5NryzDK3_ez064IsBGdXjVUT59G5IRuFdqZlCJCneepU.png?r=229'></img>
         </ProfilePicture>
+        </NavLink>
       </RightContainer>
     </Nav>
   )

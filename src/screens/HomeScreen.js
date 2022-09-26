@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import NavBar from './NavBar'
-import Banner from './Banner'
-import Rows from './Rows'
+import NavBar from '../components/NavBar'
+import Banner from '../components/Banner'
+import Rows from '../components/Rows'
 
 const HomeScreen = () => {
   return (

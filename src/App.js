@@ -15,8 +15,7 @@ function App() {
   useEffect(()=>{
     const unsubscribe = onAuthStateChanged(auth, async(user) => {
       if(user){
-        //logged in (saves the last user logged in)
-        
+        //logged in (saves the last user logged in) 
       }else{
         //logged out
       }

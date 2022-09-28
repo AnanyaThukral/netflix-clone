@@ -1,8 +1,8 @@
 import {React, useRef} from 'react'
 import styled from 'styled-components'
 import NavBar from '../components/NavBar'
-import { useSelector } from 'react-redux'
-import { selectUser } from '../features/userSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectUser, editEmail } from '../features/userSlice'
 import {auth} from '../firebase'
 import { signOut } from 'firebase/auth'
 
@@ -10,6 +10,8 @@ const ProfileScreen = () => {
 
   //get user from store
   const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+  const emailRef = useRef(null)
 
   return (
     <Container>
@@ -25,9 +27,17 @@ const ProfileScreen = () => {
             <img src = 'https://occ-0-344-1007.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABY20DrC9-11ewwAs6nfEgb1vrORxRPP9IGmlW1WtKuaLIz8VxCx5NryzDK3_ez064IsBGdXjVUT59G5IRuFdqZlCJCneepU.png?r=229'/>
           </ProfilePicture>
           <ProfileInfo>
-            <EmailContainer>
-             <input defaultValue={user.email}></input>
-            </EmailContainer>
+              <form>
+                <EmailContainer>
+                <input ref = {emailRef} defaultValue={user.email}></input>
+                </EmailContainer>
+                <EditButton onClick={()=>{
+                  dispatch(editEmail({
+                    email: emailRef.current.value,
+                    uid: user.uid
+                  }))
+                }}>Save</EditButton>
+              </form>
             <h3>Plans</h3>
             <p></p>
             <div>
@@ -125,4 +135,12 @@ const EmailContainer = styled.div`
   &:focus{
     outline: none;
   }
+`
+
+const EditButton = styled.button`
+    background: #fff;
+    border: 1px solid #fff;
+    color: green;
+    font-weight: 700;
+    width: 80px;
 `

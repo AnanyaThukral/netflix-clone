@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    user: null
+    user: null 
 }
 
 const userSlice = createSlice({
@@ -15,12 +15,15 @@ const userSlice = createSlice({
         },
         logout: (state) => {
             state.user = null
+        },
+        editEmail : (state, action) =>{
+            state.user.email = action.payload.email
         }
     }
 })
 
 //dispath actions to the store
-export const {login, logout} = userSlice.actions;
+export const {login, logout, editEmail} = userSlice.actions;
 
 //selectors (get info from the store)
 export const selectUser = (state) => state.user.user;

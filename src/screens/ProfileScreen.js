@@ -1,4 +1,4 @@
-import React from 'react'
+import {React, useRef} from 'react'
 import styled from 'styled-components'
 import NavBar from '../components/NavBar'
 import { useSelector } from 'react-redux'
@@ -26,7 +26,7 @@ const ProfileScreen = () => {
           </ProfilePicture>
           <ProfileInfo>
             <EmailContainer>
-              {user.email}
+             <input defaultValue={user.email}></input>
             </EmailContainer>
             <h3>Plans</h3>
             <p></p>
@@ -114,5 +114,15 @@ const EmailContainer = styled.div`
   padding: 15px;
   font-size: 15px;
   padding-left: 20px;
-  color: white;
+  input{
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    resize: none;
+    color: white;
+  }
+  &:focus{
+    outline: none;
+  }
 `

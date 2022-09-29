@@ -1,10 +1,11 @@
-import {React, useRef} from 'react'
+import {React, useEffect, useRef} from 'react'
 import styled from 'styled-components'
 import NavBar from '../components/NavBar'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectUser, editEmail } from '../features/userSlice'
 import {auth} from '../firebase'
-import { signOut } from 'firebase/auth'
+import { signOut, updateEmail } from 'firebase/auth'
+import { onAuthStateChanged } from 'firebase/auth';
 
 const ProfileScreen = () => {
 
@@ -12,6 +13,17 @@ const ProfileScreen = () => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const emailRef = useRef(null)
+
+  function updateEmail() {
+    onAuthStateChanged(auth, async(currentUser) => {
+      console.log("Old Email", currentUser);
+      updateEmail(currentUser, user.email).then(() => {
+        console.log("email updated", user.email);
+      }).catch((e) => {
+        console.log(e);
+      });
+    });
+  }
 
   return (
     <Container>
@@ -27,17 +39,25 @@ const ProfileScreen = () => {
             <img src = 'https://occ-0-344-1007.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABY20DrC9-11ewwAs6nfEgb1vrORxRPP9IGmlW1WtKuaLIz8VxCx5NryzDK3_ez064IsBGdXjVUT59G5IRuFdqZlCJCneepU.png?r=229'/>
           </ProfilePicture>
           <ProfileInfo>
-              <form>
                 <EmailContainer>
                 <input ref = {emailRef} defaultValue={user.email}></input>
                 </EmailContainer>
-                <EditButton onClick={()=>{
+                <EditButton onClick={()=> {
                   dispatch(editEmail({
                     email: emailRef.current.value,
                     uid: user.uid
                   }))
+
+                  // updateEmail(auth.currentUser, user.email).then((update)=>{
+                  //   //email updated
+                  //   console.log(auth.currentUser)
+                  //   console.log(user.email)
+                  //   setUser(auth().currentUser());
+                  // }).catch((error)=>{
+                  //   alert(error)
+                  // })
                 }}>Save</EditButton>
-              </form>
+           
             <h3>Plans</h3>
             <p></p>
             <div>
